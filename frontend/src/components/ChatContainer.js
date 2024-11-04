@@ -22,20 +22,18 @@ const ChatContainer = () => {
     setMessages(prevMessages => [...prevMessages, userMessage])
     setInput('')
 
-    try {
-      fetch('/chatbot/generate-response/', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({message: input}),
-      }).then(response => response.json()).then((data) => {
-        const aiMessage = {text: data.message, sender: 'AI Tutor'}
-        setMessages(prevMessages => [...prevMessages, aiMessage])
-      })
-    } catch (error) {
+    fetch('/chatbot/generate-response/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({message: input}),
+    }).then(response => response.json()).then((data) => {
+      const aiMessage = {text: data.message, sender: 'AI Tutor'}
+      setMessages(prevMessages => [...prevMessages, aiMessage])
+    }).catch((error) =>{
       console.error('Error sending message:', error)
       const errorMessage = {text: 'Sorry, there was an error processing your request.', sender: 'System'}
       setMessages(prevMessages => [...prevMessages, errorMessage])
-    }
+    })
   }
 
   const handleKeyPress = (e) => {
