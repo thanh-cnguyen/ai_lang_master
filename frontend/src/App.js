@@ -1,5 +1,6 @@
 import './App.css'
 import ChatContainer from './components/ChatContainer'
+import './utils/fetchInterceptor'
 
 function App() {
   return (
