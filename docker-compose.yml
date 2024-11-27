@@ -1,23 +1,36 @@
-version: '3.8'
-
 services:
   backend:
     build: .
     ports:
       - "8000:8000"
     volumes:
-      - .:/app
+      - .:/ai_lang_master
+    command: daphne -b 0.0.0.0 -p 8000 ai_lang_master.asgi:application
     environment:
       - DEBUG=1
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - db
+    networks:
+      - app-network
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - ./frontend:/app
-    depends_on:
-      - backend
+      - ./frontend:/frontend
+    environment:
+      - PROXY=http://backend:8000
+      - CHOKIDAR_USEPOLLING=true
+      - WDS_SOCKET_PORT=0
+    command: npm start
+    stdin_open: true
+    tty: true
+    networks:
+      - app-network
 
   db:
     image: postgres:13
@@ -27,6 +40,11 @@ services:
       - POSTGRES_PASSWORD=password
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
 
 volumes:
   postgres_data:
+
+networks:
+  app-network:
