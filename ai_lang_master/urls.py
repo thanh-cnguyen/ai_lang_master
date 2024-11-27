@@ -16,11 +16,10 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import re_path
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('chatbot/', include('chatbot.urls')),
-    path('', TemplateView.as_view(template_name='index.html')),
+    re_path("admin/", admin.site.urls),
+    re_path('', TemplateView.as_view(template_name='index.html'), name='react-app'),
 ]

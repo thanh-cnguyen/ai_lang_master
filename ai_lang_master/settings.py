@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-8=2-#g&2wshkm)0%p4=-_il6=p!mxu-4$_d5nli+n_#hlvji*$"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'host.docker.internal', 'backend']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "chatbot",
+    "channels",
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            os.path.join(BASE_DIR, 'frontend/public' if DEBUG else 'frontend/build'),
+            os.path.join(BASE_DIR, 'frontend/build'),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -74,7 +75,27 @@ TEMPLATES = [
     },
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+]
+
+CORS_ALLOW_HEADERS = ['*']
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+]
+
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
+
 WSGI_APPLICATION = "ai_lang_master.wsgi.application"
+ASGI_APPLICATION = 'ai_lang_master.asgi.application'
+
 
 
 # Database
@@ -123,14 +144,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend/public' if DEBUG else 'frontend/build/static'),
+    os.path.join(BASE_DIR, 'frontend/build/static'),
 ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# API keys
+OPENAI_API_KEY = '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'
+OPENAI_DEFAULT_MODEL = 'gpt-4o-mini'
 
 try:
     from .local_settings import *
