@@ -1,22 +1,15 @@
-from .bert_model import BERTHandler
 from .gpt_model import GPTHandler
-from .translation_model import TranslationHandler
+
 
 class Chatbot:
     def __init__(self):
-        self.bert = BERTHandler()
         self.gpt = GPTHandler()
-        self.translator = TranslationHandler()
 
-    def process_input(self, text, source_lang, target_lang):
-        # Encode input using BERT
-        encoded_input = self.bert.encode_input(text)
-
+    def process_input(self, text: str):
         # Generate response using GPT
-        response = self.gpt.generate_response(encoded_input, None)  # Simplified for brevity
+        return self.gpt.chat(text)
 
-        # Translate response if necessary
-        if source_lang != target_lang:
-            response = self.translator.translate(response, target_lang)
-
-        return response
+    async def process_input_stream(self, text: str):
+        # Generate response using GPT
+        async for resp_chunk in self.gpt.stream_chat(text):
+            yield resp_chunk

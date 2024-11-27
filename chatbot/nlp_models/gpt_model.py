@@ -1,10 +1,45 @@
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
+import asyncio
+from django.conf import settings
+from openai import OpenAI
+from logging import getLogger
+
+logger = getLogger(__name__)
+
 
 class GPTHandler:
     def __init__(self):
-        self.tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
-        self.model = GPT2LMHeadModel.from_pretrained('gpt2')
+        self.client = OpenAI(api_key=settings.OPENAI_API_KEY)
+        self.messages = [
+            {'role': 'system', 'content': 'You are a helpful language tutor.'},
+        ]
 
-    def generate_response(self, input_ids, attention_mask):
-        outputs = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, max_length=50)
-        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+    def chat(self, text: str):
+        self.messages.append({'role': 'user', 'content': text})
+        chat_completion = self.client.chat.completions.create(
+            model=settings.OPENAI_DEFAULT_MODEL,
+            messages=self.messages,
+        )
+        response = chat_completion.choices[0].message.content
+        self.messages.append({'role': 'assistant', 'content': response})
+        return response
+
+    async def stream_chat(self, text: str):
+        self.messages.append({'role': 'user', 'content': text})
+        assistant_response = ''
+        def generate_responses():
+            for response in self.client.chat.completions.create(
+                model=settings.OPENAI_DEFAULT_MODEL,
+                messages=self.messages,
+                stream=True,
+            ):
+                if response.choices[0].delta.content is not None:
+                    yield response.choices[0].delta.content
+
+        loop = asyncio.get_event_loop()
+        responses = await loop.run_in_executor(None, generate_responses)
+
+        for response in responses:
+            assistant_response += response
+            yield assistant_response
+
+        self.messages.append({'role': 'assistant', 'content': assistant_response})
