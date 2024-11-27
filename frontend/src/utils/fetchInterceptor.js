@@ -12,5 +12,5 @@ window.fetch = async (input, init) => {
   const url = `${API_BASE_URL}/${input.startsWith('/') ? input.slice(1) : input}`
 
   return originalFetch(url, init)
-};
+}
 
