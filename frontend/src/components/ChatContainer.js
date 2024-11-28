@@ -10,7 +10,6 @@ const ChatContainer = () => {
     name: 'AI Tutor',
   }])
   const [input, setInput] = useState('')
-  const [voiceActivated, setVoiceActivated] = useState(false)
   const [isManuallyStopped, setIsManuallyStopped] = useState(false)
   const [waitingForVoiceResponse, setWaitingForVoiceResponse] = useState(false)
   const messagesEndRef = useRef(null)
@@ -32,6 +31,7 @@ const ChatContainer = () => {
     setMessages((prevMessages) => [...prevMessages, userMessage])
 
     if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+      setWaitingForVoiceResponse(true)
       socketRef.current.send(JSON.stringify({new_message: input}))
     } else {
       setMessages((prevMessages) => [
@@ -53,6 +53,7 @@ const ChatContainer = () => {
 
   const resetChat = () => {
     if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+      setWaitingForVoiceResponse(false)
       socketRef.current.send(JSON.stringify({new_message: 'reset'}))
     } else {
       setMessages((prevMessages) => [
@@ -67,7 +68,6 @@ const ChatContainer = () => {
   }
 
   const startListening = () => {
-    setVoiceActivated(true)
     if (!browserSupportsSpeechRecognition) {
       alert('Your browser does not support speech recognition. Please use a supported browser.')
     } else {
@@ -78,7 +78,6 @@ const ChatContainer = () => {
   }
 
   const stopListening = () => {
-    setVoiceActivated(false)
     setIsManuallyStopped(true)
     SpeechRecognition.stopListening()
   }
@@ -91,7 +90,7 @@ const ChatContainer = () => {
       const selectedVoice = voices.find(voice => voice.name === 'Google US English') || voices[0]
       utterance.voice = selectedVoice
       utterance.pitch = 1
-      utterance.rate = 1
+      utterance.rate = 1.25
 
       utterance.onend = () => {
         console.log('Speech synthesis completed.')
@@ -135,7 +134,7 @@ const ChatContainer = () => {
     const lastMessage = messages[messages.length - 1]
 
     // If waiting for the voice response and the last message is from the assistant and is complete, speak it
-    if (waitingForVoiceResponse && lastMessage.role === 'assistant' && lastMessage.is_complete) {
+    if (lastMessage.role === 'assistant' && lastMessage.is_complete) {
       const santizedText = stripMarkdown(lastMessage.content)
       speak(santizedText)
       setWaitingForVoiceResponse(false)
@@ -149,12 +148,9 @@ const ChatContainer = () => {
         // Speech recognition was stopped manually
         setIsManuallyStopped(false) // Reset manual stop flag
         // Do not set waiting state
-      } else if (voiceActivated) {
-        // Speech recognition stopped automatically
-        setWaitingForVoiceResponse(true) // Set waiting state
       } else {
         // Speech recognition stopped automatically
-        setVoiceActivated(false)
+        setWaitingForVoiceResponse(true) // Set waiting state
       }
     } else {
       // If listening is true, reset waiting state
