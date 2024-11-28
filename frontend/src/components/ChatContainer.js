@@ -10,7 +10,6 @@ const ChatContainer = () => {
     name: 'AI Tutor',
   }])
   const [input, setInput] = useState('')
-  const [isManuallyStopped, setIsManuallyStopped] = useState(false)
   const [waitingForVoiceResponse, setWaitingForVoiceResponse] = useState(false)
   const messagesEndRef = useRef(null)
   const socketRef = useRef(null)
@@ -77,10 +76,7 @@ const ChatContainer = () => {
     }
   }
 
-  const stopListening = () => {
-    setIsManuallyStopped(true)
-    SpeechRecognition.stopListening()
-  }
+  const stopListening = () => SpeechRecognition.stopListening()
 
   const speak = (text) => {
     if ('speechSynthesis' in window) {
@@ -144,23 +140,6 @@ const ChatContainer = () => {
       setWaitingForVoiceResponse(false)
     }
   }, [messages])
-
-  // Manage the listening stop reason
-  useEffect(() => {
-    if (!listening) {
-      if (isManuallyStopped) {
-        // Speech recognition was stopped manually
-        setIsManuallyStopped(false) // Reset manual stop flag
-        // Do not set waiting state
-      } else {
-        // Speech recognition stopped automatically
-        setWaitingForVoiceResponse(true) // Set waiting state
-      }
-    } else {
-      // If listening is true, reset waiting state
-      setWaitingForVoiceResponse(false)
-    }
-  }, [listening, isManuallyStopped])
 
   useEffect(() => {
     const url = 'ws://localhost:8001/ws/streaming-chat/'
