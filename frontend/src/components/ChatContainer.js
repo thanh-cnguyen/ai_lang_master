@@ -163,7 +163,7 @@ const ChatContainer = () => {
   }, [listening, isManuallyStopped])
 
   useEffect(() => {
-    const url = 'ws://localhost:8000/ws/streaming-chat/'
+    const url = 'ws://localhost:8001/ws/streaming-chat/'
     socketRef.current = new WebSocket(url)
 
     socketRef.current.onopen = () => console.log('WebSocket connection established')

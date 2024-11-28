@@ -2,13 +2,20 @@ FROM python:3.11.1
 
 WORKDIR /ai_lang_master
 
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    supervisor \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY requirements.txt .
 RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY . .
 
-EXPOSE 8000
+EXPOSE 8000 8001
 
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "ai_lang_master.asgi:application"]
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+CMD ["/usr/bin/supervisord"]

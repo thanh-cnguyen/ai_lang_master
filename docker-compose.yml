@@ -1,16 +1,25 @@
 services:
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
   backend:
     build: .
     ports:
-      - "8000:8000"
+      - "8000:8000"  # Gunicorn (WSGI)
+      - "8001:8001"  # Daphne (ASGI)
     volumes:
       - .:/ai_lang_master
-    command: daphne -b 0.0.0.0 -p 8000 ai_lang_master.asgi:application
     environment:
       - DEBUG=1
       - PYTHONUNBUFFERED=1
+      - CHANNEL_LAYERS=default.layers.channels_redis.RedisChannelLayer
     depends_on:
       - db
+      - redis
     networks:
       - app-network
 
@@ -22,8 +31,9 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/frontend
+      - /frontend/node_modules
     environment:
-      - PROXY=http://backend:8000
+      - REACT_APP_API_URL=http://localhost:8000
       - CHOKIDAR_USEPOLLING=true
       - WDS_SOCKET_PORT=0
     command: npm start
