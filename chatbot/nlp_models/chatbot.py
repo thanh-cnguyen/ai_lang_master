@@ -5,6 +5,9 @@ class Chatbot:
     def __init__(self):
         self.gpt = GPTHandler()
 
+    def reset_chat(self):
+        self.gpt.reset_chat()
+
     def process_input(self, text: str):
         # Generate response using GPT
         return self.gpt.chat(text)

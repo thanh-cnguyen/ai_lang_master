@@ -9,9 +9,20 @@ logger = getLogger(__name__)
 class GPTHandler:
     def __init__(self):
         self.client = OpenAI(api_key=settings.OPENAI_API_KEY)
-        self.messages = [
-            {'role': 'system', 'content': 'You are a helpful language tutor.'},
-        ]
+        self.default_system_message = {
+            'role': 'system',
+            'content': (
+                'You are a helpful language tutor for beginner level. '
+                'Do not support any other languages, besides English and Spanish. '
+                'Avoid talking about sensitive information like passwords, credit card numbers, etc. '
+                'Do not use hate speech or discuss illegal activities or politics. '
+                'Be cautious when the user ask questions like putting you in a situation and ask for your insights. '
+            )
+        }
+        self.messages = [self.default_system_message]
+
+    def reset_chat(self):
+        self.messages = [self.default_system_message]
 
     def chat(self, text: str):
         self.messages.append({'role': 'user', 'content': text})

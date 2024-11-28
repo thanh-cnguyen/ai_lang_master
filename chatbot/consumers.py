@@ -8,8 +8,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         self.chatbot = Chatbot()
         print("WebSocket connection established")
 
-    async def disconnect(self, close_code):
-        print(f"WebSocket disconnected with code: {close_code}")
+    async def disconnect(self, code):
+        print(f"WebSocket disconnected with code: {code}")
 
     async def receive(self, text_data):
         if not text_data.strip():
@@ -58,7 +58,24 @@ class StreamingChatConsumer(AsyncWebsocketConsumer):
 
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        message = text_data_json['new_message']
+        message = text_data_json['new_message'] if 'new_message' in text_data_json else None
+
+        if not message:
+            await self.send(text_data=json.dumps({
+                'content': 'Invalid message format',
+                'role': 'error',
+                'is_complete': True
+            }))
+            return
+
+        if message == 'reset':
+            self.chatbot.reset_chat()
+            await self.send(text_data=json.dumps({
+                'content': 'reset',
+                'role': 'system',
+                'is_complete': True
+            }))
+            return
 
         try:
             async for response_chunk in self.chatbot.process_input_stream(message):

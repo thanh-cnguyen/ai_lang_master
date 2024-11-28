@@ -39,6 +39,21 @@ const ChatContainer = () => {
 
   const handleKeyPress = (e) => e.key === 'Enter' && sendMessage()
 
+  const resetChat = () => {
+    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+      socketRef.current.send(JSON.stringify({new_message: 'reset'}))
+    } else {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          content: 'Connection lost. Please try again.',
+          role: 'system',
+          name: 'System',
+        },
+      ]);
+    }
+  };
+
   useEffect(() => {
     const url = 'ws://localhost:8000/ws/streaming-chat/'
     socketRef.current = new WebSocket(url)
@@ -88,6 +103,12 @@ const ChatContainer = () => {
             is_complete: true,
           }
           return [...prevMessages, errorMessage]
+        } else if (role === 'system' && content === 'reset') {
+          return [{
+            content: 'Hello! How can I help you today?',
+            role: 'assistant',
+            name: 'AI Tutor',
+          }]
         }
 
         // For any other roles, return the previous state unmodified
@@ -119,7 +140,7 @@ const ChatContainer = () => {
         <div ref={messagesEndRef} />
       </div>
       <div className="input-area">
-        <button className='button'>Voice</button>
+        <button className='button-voice'>Voice</button>
         <input
           type="text"
           value={input}
@@ -128,7 +149,8 @@ const ChatContainer = () => {
           placeholder="Type your message..."
           className='input'
         />
-        <button onClick={sendMessage} className='button'>Send</button>
+        <button onClick={sendMessage} className='button-send'>Send</button>
+        <button onClick={resetChat} className='button-reset'>Reset</button>
       </div>
     </div>
   )
