@@ -155,7 +155,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # API keys
-OPENAI_API_KEY = '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'
 OPENAI_DEFAULT_MODEL = 'gpt-4o-mini'
 
 try:
