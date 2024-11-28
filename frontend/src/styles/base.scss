@@ -1,3 +1,5 @@
+@import 'mixins';
+
 .chat-container {
   width: 100%;
   max-width: 600px;
@@ -43,14 +45,14 @@
   font-size: 16px;
 }
 
-.button {
-  padding: 5px 15px;
-  font-size: 16px;
-  background-color: #91671b;
-  color: white;
-  border: none;
-  cursor: pointer;
-  &:hover {
-    box-shadow: 0 0 2px 2px #c99028;
-  }
+.button-voice {
+  @include button-style(#c52727, #aa5959);
+}
+
+.button-send {
+  @include button-style(#91671b, #c99028);
+}
+
+.button-reset {
+  @include button-style(#208a1d, #6ba869);
 }
