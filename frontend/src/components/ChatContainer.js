@@ -87,10 +87,14 @@ const ChatContainer = () => {
       const utterance = new SpeechSynthesisUtterance(text)
       // Select a voice (optional)
       const voices = window.speechSynthesis.getVoices()
-      const selectedVoice = voices.find(voice => voice.name === 'Google US English') || voices[0]
+      const preferredVoices = [
+        'Microsoft David Desktop - English (United States)', // Windows
+        'Alex' // macOS
+      ]
+      const selectedVoice = voices.find(voice => preferredVoices.includes(voice.name)) || voices.find(voice => voice.lang === 'en-US') || voices[0]
       utterance.voice = selectedVoice
       utterance.pitch = 1
-      utterance.rate = 1.25
+      utterance.rate = 1.1
 
       utterance.onend = () => {
         console.log('Speech synthesis completed.')
