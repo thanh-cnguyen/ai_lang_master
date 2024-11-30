@@ -4,9 +4,10 @@
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  border: 1px solid #ccc;
+  border: 1px solid #FFD700;
   border-radius: 5px;
   overflow: hidden;
+  background-color: #000;
 }
 
 .messages {
@@ -18,25 +19,27 @@
 }
 
 .user-message {
-  background-color: #e6f2ff;
+  background-color: #FFD700;
   padding: 5px 10px;
   border-radius: 10px;
   margin-bottom: 10px;
   max-width: 80%;
   align-self: end;
+  color: #000;
 }
 
 .ai-message {
-  background-color: #f0f0f0;
+  background-color: #333;
   padding: 5px 10px;
   border-radius: 10px;
   margin-bottom: 10px;
   max-width: 80%;
   align-self: baseline;
+  color: #FFD700;
 }
 
 .waiting-indicator {
-  background-color: #f0f0f0;
+  background-color: #333;
   padding: 5px 10px;
   border-radius: 10px;
   align-self: baseline;
@@ -50,7 +53,7 @@
   width: 12px;
   height: 12px;
   margin: 0 5px;
-  background-color: #858a84; /* Green color; change as desired */
+  background-color: #FFD700;
   border-radius: 50%;
   opacity: 0;
   animation: blink 1.4s infinite both;
@@ -82,28 +85,28 @@
 .input-area {
   display: flex;
   padding: 10px;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #FFD700;
+  background-color: #000;
 }
 
 .input {
   flex: 1;
   padding: 5px;
   font-size: 16px;
+  color: #FFD700;
+  background-color: #333;
+  border: 1px solid #FFD700;
 }
 
-.button-voice {
-  @include button-style(#4caf50, #388e3c);
-
-  &.listening {
-    background-color: #ff5252;
-    box-shadow: 0 0 5px 2px #ff1744;
-  }
+.button-voice, .button-send, .button-reset {
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.button-send {
-  @include button-style(#91671b, #c99028);
-}
-
-.button-reset {
-  @include button-style(#332f24, #858a84);
+.button-voice:hover, .button-send:hover, .button-reset:hover {
+  background-color: #FFC107;
 }
