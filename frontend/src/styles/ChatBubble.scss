@@ -1,0 +1,48 @@
+/* frontend/src/components/ChatBubble.css */
+
+.chat-bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: #1c1c1e;
+  color: #FFD700;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin: 100px auto;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.chat-bubble:hover {
+  transform: scale(1.05);
+}
+
+.greeting {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.prompt {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.icon {
+  font-size: 30px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
