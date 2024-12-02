@@ -5,12 +5,13 @@ import {nameMap} from '../utils/constants'
 
 const ChatContainer = () => {
   const [messages, setMessages] = useState([{
-    content: 'Hello! How can I help you today?',
+    content: "Hi! 👋 ¡Hola! I'm your English-Español AI Tutor. How can I assist you today?",
     role: 'assistant',
     name: 'AI Tutor',
   }])
   const [input, setInput] = useState('')
   const [waitingForVoiceResponse, setWaitingForVoiceResponse] = useState(false)
+  const [language, setLanguage] = useState('en-US')
   const messagesEndRef = useRef(null)
   const socketRef = useRef(null)
 
@@ -72,7 +73,7 @@ const ChatContainer = () => {
     } else {
       resetTranscript()
       setWaitingForVoiceResponse(false)
-      SpeechRecognition.startListening({continuous: false})
+      SpeechRecognition.startListening({continuous: false, language})
     }
   }
 
@@ -236,6 +237,10 @@ const ChatContainer = () => {
         <div ref={messagesEndRef} />
       </div>
       <div className="input-area">
+        <select className='lang-select' value={language} onChange={(e) => setLanguage(e.target.value)}>
+          <option value="en-US">English (US)</option>
+          <option value="es-ES">Spanish (Spain)</option>
+        </select>
         <button
           className={`button-voice ${listening ? 'listening' : ''}`}
           onClick={listening ? stopListening : startListening}

@@ -110,3 +110,30 @@
 .button-voice:hover, .button-send:hover, .button-reset:hover {
   background-color: #FFC107;
 }
+
+.lang-select {
+  appearance: none; /* Remove default arrow */
+  background-color: #333;
+  color: #FFD700;
+  border: 1px solid #FFD700;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+
+  /* Custom arrow using background SVG */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5"><path fill="%23FFD700" d="M0 0l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 5px;
+
+  &:hover {
+    background-color: #444;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #FFC107;
+  }
+}
