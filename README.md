@@ -1,7 +1,6 @@
 #AI Language Master
 
 ##Project Overview
------------------
 AI Language Master is an interactive conversational AI platform designed to help people globally learn new languages. By simulating natural, real-world conversations, our goal is to provide an immersive, user-friendly environment where learners can practice and improve their language skills at their own pace. With real-time feedback on grammar, vocabulary, and contextual usage, learners can engage in meaningful dialogue without the fear of public judgment.
 
 Tejas Pinjala: Frontend development, Chat features, Prompt engineering, AI model fine-tuning, Dataset creation.
