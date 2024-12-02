@@ -17,13 +17,6 @@ Backend: Django, Python
 AI: GPT-4, Prompt engineering, Model fine-tuning
 Docker: Containerization for seamless integration of frontend, backend, and AI models
 
-Features
-Natural Conversations: Engage in real-time, context-aware conversations with the AI chatbot.
-Grammar & Vocabulary Feedback: Receive instant feedback on grammatical mistakes and vocabulary usage.
-Multilingual Support: Practice multiple languages through simulated dialogues.
-Voice Input: Speak directly to the AI using voice recognition for a more interactive experience.
-Customizable Learning Pace: The AI adapts to your learning progress and adjusts its responses accordingly.
-
 Installation
 
 Prerequisites
@@ -33,14 +26,14 @@ Django
 
 Steps
 1. Clone the repository:
-   git clone https://github.com/yourusername/ai-language-master.git
+   git clone https://github.com/thanh-cnguyen/ai_lang_master
 2. Navigate to the project directory:
    cd ai-language-master
 3. Build the Docker containers:
    docker-compose build
 4. Start the application:
    docker-compose up
-5. Visit http://localhost:8000 in your web browser to start using the AI chatbot.
+5. Visit http://localhost:3000 in your web browser to start using the AI chatbot.
 
 Usage
 Chat with the AI
@@ -63,5 +56,9 @@ Enhanced Feedback: We aim to integrate pronunciation and grammatical analysis fe
 Immersive Learning: Future versions will explore integrating VR/AR components to simulate real-world scenarios for practice.
 
 References
-LeewayHertz. “How to Train a GPT Model: A Comprehensive Guide.” Medium, Javarevisited, 8 Aug. 2023, link: https://medium.com/javarevisited/how-to-train-a-gpt-model-a-comprehensive-guide-cd77d8db2693.
-OpenAI API Reference, platform.openai.com/docs/api-reference/introduction: https://platform.openai.com/docs/api-reference/introduction.
+Mariani, Marcello M., et al. "Artificial Intelligence Empowered Conversational Agents: A Systematic Literature Review and Research Agenda." *Journal of Business Research*, Elsevier, 21 Mar. 2023, www.sciencedirect.com/science/article/pii/S0148296323001960.
+Chen, Kaiping, et al. "Conversational AI and Equity through Assessing GPT-3’s Communication with Diverse Social Groups on Contentious Topics." *Nature News*, Nature Publishing Group, 18 Jan. 2024, www.nature.com/articles/s41598-024-51969-w.
+"Conversational AI: An Overview of Methodologies, Applications & Future Scope." *IEEE Conference Publication*, IEEE Xplore, ieeexplore.ieee.org/document/9129347/. Accessed 2 Dec. 2024.
+LeewayHertz. "How to Train a GPT Model: A Comprehensive Guide." , Javarevisited, 8 Aug. 2023, medium.com/javarevisited/how-to-train-a-gpt-model-a-comprehensive-guide-cd77d8db2693.
+"Models - Hugging Face," huggingface.co/models. Accessed 2 Dec. 2024.
+OpenAI API Reference, platform.openai.com/docs/api-reference/introduction. Accessed 2 Dec. 2024.
