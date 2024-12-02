@@ -154,3 +154,4 @@ yarn-error.log*
 
 # Frotend
 .vite
+supervisord.pid
