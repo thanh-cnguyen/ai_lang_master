@@ -55,9 +55,9 @@ Enhanced Feedback: We aim to integrate pronunciation and grammatical analysis fe
 Immersive Learning: Future versions will explore integrating VR/AR components to simulate real-world scenarios for practice.
 
 ## References
-Mariani, Marcello M., et al. "Artificial Intelligence Empowered Conversational Agents: A Systematic Literature Review and Research Agenda." *Journal of Business Research*, Elsevier, 21 Mar. 2023, www.sciencedirect.com/science/article/pii/S0148296323001960.
-Chen, Kaiping, et al. "Conversational AI and Equity through Assessing GPT-3’s Communication with Diverse Social Groups on Contentious Topics." *Nature News*, Nature Publishing Group, 18 Jan. 2024, www.nature.com/articles/s41598-024-51969-w.
-"Conversational AI: An Overview of Methodologies, Applications & Future Scope." *IEEE Conference Publication*, IEEE Xplore, ieeexplore.ieee.org/document/9129347/. Accessed 2 Dec. 2024.
-LeewayHertz. "How to Train a GPT Model: A Comprehensive Guide." , Javarevisited, 8 Aug. 2023, medium.com/javarevisited/how-to-train-a-gpt-model-a-comprehensive-guide-cd77d8db2693.
-"Models - Hugging Face," huggingface.co/models. Accessed 2 Dec. 2024.
-OpenAI API Reference, platform.openai.com/docs/api-reference/introduction. Accessed 2 Dec. 2024.
+* Mariani, Marcello M., et al. "Artificial Intelligence Empowered Conversational Agents: A Systematic Literature Review and Research Agenda." *Journal of Business Research*, Elsevier, 21 Mar. 2023, www.sciencedirect.com/science/article/pii/S0148296323001960.
+* Chen, Kaiping, et al. "Conversational AI and Equity through Assessing GPT-3’s Communication with Diverse Social Groups on Contentious Topics." *Nature News*, Nature Publishing Group, 18 Jan. 2024, www.nature.com/articles/s41598-024-51969-w.
+* "Conversational AI: An Overview of Methodologies, Applications & Future Scope." *IEEE Conference Publication*, IEEE Xplore, ieeexplore.ieee.org/document/9129347/. Accessed 2 Dec. 2024.
+* LeewayHertz. "How to Train a GPT Model: A Comprehensive Guide." , Javarevisited, 8 Aug. 2023, medium.com/javarevisited/how-to-train-a-gpt-model-a-comprehensive-guide-cd77d8db2693.
+* "Models - Hugging Face," huggingface.co/models. Accessed 2 Dec. 2024.
+* OpenAI API Reference, platform.openai.com/docs/api-reference/introduction. Accessed 2 Dec. 2024.
