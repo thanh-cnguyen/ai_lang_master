@@ -3,9 +3,20 @@
 ## Project Overview
 AI Language Master is an interactive conversational AI platform designed to help people globally learn new languages. By simulating natural, real-world conversations, our goal is to provide an immersive, user-friendly environment where learners can practice and improve their language skills at their own pace. With real-time feedback on grammar, vocabulary, and contextual usage, learners can engage in meaningful dialogue without the fear of public judgment.
 
-* Tejas Pinjala: Frontend development, Chat features, Prompt engineering, AI model fine-tuning, Dataset creation.
-* Thanh Nguyen: Backend integration with Django, GPT model implementation, API endpoint development.
-* Faizul Anis: Model debugging & testing, full-stack development, Windows-Mac model conversion, compatibility assurance, surveyed participants and documentation.
+* Tejas Pinjala: 
+   * Implemented interactive chat functionalities, enhancing user engagement and real-time communication within the application.
+   * Applied prompt engineering techniques and fine-tuned various AI models to improve accuracy, responsiveness, and overall performance.
+   * Developed and curated comprehensive datasets to support machine learning model training, ensuring data quality.
+
+* Thanh Nguyen:
+   * Led the integration of React.js, Django, and Docker to build a full-stack web application.
+   * Implemented GPT-based features to enhance user interactions.
+   * Designed the chatbot workflow and robust API endpoints to ensure seamless frontend-backend communication.
+* Faizul Anis:
+   * Conducted comprehensive debugging and performed quality assurance of AI models.
+   * Facilitated the transition of the full-stack application model to support both Windows and Mac operating systems.
+   * Designed participant surveys, analyzed feedback, and developed detailed documentation to support project workflows and insights.
+
 
 ## Instructor
 Tatiana Erekhinskaya, CS 6320.002, Fall 2024
