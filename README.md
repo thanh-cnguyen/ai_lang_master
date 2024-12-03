@@ -1,7 +1,7 @@
 # AI Language Master
 
 ## Project Overview
-AI Language Master is an interactive conversational AI platform designed to help people globally learn new languages. By simulating natural, real-world conversations, our goal is to provide an immersive, user-friendly environment where learners can practice and improve their language skills at their own pace. With real-time feedback on grammar, vocabulary, and contextual usage, learners can engage in meaningful dialogue without the fear of public judgment.
+AI Language Master is an interactive conversational AI platform designed to help people globally learn new languages. By simulating natural, real-world conversations, we aim to provide an immersive, user-friendly environment where learners can practice and improve their language skills at their own pace. With real-time feedback on grammar, vocabulary, and contextual usage, learners can engage in meaningful dialogue without the fear of public judgment.
 
 * Tejas Pinjala: 
    * Implemented interactive chat functionalities, enhancing user engagement and real-time communication within the application.
@@ -17,9 +17,11 @@ AI Language Master is an interactive conversational AI platform designed to help
    * Facilitated the transition of the full-stack application model to support both Windows and Mac operating systems.
    * Designed participant surveys, analyzed feedback, and developed detailed documentation to support project workflows and insights.
 
-
 ## Instructor
 Tatiana Erekhinskaya, CS 6320.002, Fall 2024
+
+## Demo and Report
+* Please check (here)[https://github.com/thanh-cnguyen/ai_lang_master/tree/main/Demo_Project_Presentation]
 
 ## Technologies Used
 * Frontend: HTML, CSS, JavaScript, React
@@ -47,7 +49,7 @@ Tatiana Erekhinskaya, CS 6320.002, Fall 2024
 
 ## Usage
 Chat with the AI
-Once the app is running, you can interact with the chatbot by typing or speaking. It will provide contextual responses based on your input.
+Once the app runs, you can interact with the chatbot by typing or speaking. It will provide contextual responses based on your input.
 
 ## Real-Time Feedback
 The AI offers grammatical corrections and vocabulary suggestions to help you learn more effectively during the conversation.
