@@ -21,7 +21,7 @@ AI Language Master is an interactive conversational AI platform designed to help
 Tatiana Erekhinskaya, CS 6320.002, Fall 2024
 
 ## Demo and Report
-* Please check (here)[https://github.com/thanh-cnguyen/ai_lang_master/tree/main/Demo_Project_Presentation]
+* Please check [here](https://github.com/thanh-cnguyen/ai_lang_master/tree/main/Demo_Project_Presentation)
 
 ## Technologies Used
 * Frontend: HTML, CSS, JavaScript, React
