@@ -22,6 +22,7 @@ Tatiana Erekhinskaya, CS 6320.002, Fall 2024
 
 ## Demo and Report
 * Please check [here](https://github.com/thanh-cnguyen/ai_lang_master/tree/main/Demo_Project_Presentation)
+* Video Link [here](https://cometmail-my.sharepoint.com/:v:/g/personal/tsp220001_utdallas_edu/EczhmYltG1pOrE-wiUGUfbQB_FkLFtNu2uu9xpbdixeA8g?e=02xZ2u)
 
 ## Technologies Used
 * Frontend: HTML, CSS, JavaScript, React
